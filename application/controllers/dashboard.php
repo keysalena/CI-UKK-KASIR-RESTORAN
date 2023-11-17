@@ -81,16 +81,16 @@ Belum Login!!
     public function tambah_pembelian($id_masakan)
     {
         $masakan = $this->model_masakan->find($id_masakan);
-    
+
         $data = array(
             'id'      => $masakan->id_masakan,
             'qty'     => 0,
             'price'   => $masakan->harga,
             'name'    => $masakan->nama_masakan,
         );
-    
+
         $this->cart->insert($data);
-    
+
         foreach ($this->cart->contents() as $item) {
             if ($item['id'] == $masakan->id_masakan) {
                 $new_qty = $this->input->post('pembelian');
@@ -98,9 +98,15 @@ Belum Login!!
                 break;
             }
         }
-    
+
         redirect('dashboard/detail_keranjang');
     }
-    
-    
+    public function index()
+    {
+        $data['masakan'] = $this->model_masakan->tampil_data()->result();
+        $this->load->view('template/header');
+        $this->load->view('template/sidebar');
+        $this->load->view('dashboard', $data);
+        $this->load->view('template/footer');
+    }
 }

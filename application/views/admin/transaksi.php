@@ -41,7 +41,7 @@
                     </div>
                     <!-- Modal -->
                     <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true">
-                        <div class="modal-dialog modal-lg"> <!-- Use "modal-lg" for large size -->
+                        <div class="modal-dialog modal-lg"> 
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h1 class="modal-title fs-5" id="exampleModalLabel">Pilih</h1>
@@ -53,8 +53,6 @@
                                             <input type="text" name="id_order" id="id_order" class="form-control pencarian" placeholder="Pilih Pelanggan" readonly>
                                         </div>
                                         <input type="hidden" class="form-control" name="name" id="name" value="<?php echo $this->session->userdata('username') ?>" required>
-                                        <!-- <input type="hidden" name="id_user" id="id_user" class="form-control pencarian" readonly required> -->
-                                        <!-- <input type="hidden" name="id_detail_order" id="id_detail_order" class="form-control pencarian"> -->
                                 </div>
                                 <div class="modal-footer">
                                     <button type="submit" class="btn btn-dark">Simpan</button>
@@ -74,11 +72,13 @@
                             <div class="modal-body">
                                 <table class="table table-bordered" id="dataTableModal" width="100%" cellspacing="0">
                                     <tr>
+                                        <th>ID ORDER</th>
                                         <th>NO MEJA</th>
                                         <th>NAMA USER</th>
                                     </tr>
                                     <?php foreach ($order as $brg) : ?>
                                         <tr class="pilih" data-no_meja="<?php echo $brg->id_order; ?>">
+                                            <td><?php echo $brg->id_order; ?></td>
                                             <td><?php echo $brg->no_meja; ?></td>
                                             <td><?php echo $brg->nama_user; ?></td>
                                         </tr>
@@ -102,8 +102,6 @@
 
             $(document).on('click', '.pilih', function(e) {
                 document.getElementById("id_order").value = $(this).attr('data-no_meja');
-                // document.getElementById("id_order").value = $(this).attr('data-nama_user');
-                // document.getElementById("id_detail_order").value = $(this).attr('data-id_detail_order');
                 $('#exampleModal2').modal('hide');
             });
         </script>
