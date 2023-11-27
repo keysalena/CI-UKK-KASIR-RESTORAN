@@ -73,8 +73,6 @@ Belum Login!!
             'id_masakan' => $id_masakan
         );
 
-        // Add processing for image if needed
-
         $this->model_masakan->edit_masakan($where, $data, 'masakan');
         redirect('admin/data_masakan/index');
     }

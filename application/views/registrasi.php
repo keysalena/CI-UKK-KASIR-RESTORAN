@@ -38,7 +38,7 @@
                         </form> <!-- Corrected closing tag -->
                         <hr>
                         <div class="text-center">
-                            <a class="small" href="<?php echo base_url('auth/login') ?>">Sudah Punya Akun? Login 123!</a>
+                            <a class="small" href="<?php echo base_url('auth/login') ?>">Sudah Punya Akun? Login!</a>
                         </div>
                     </div>
                 </div>

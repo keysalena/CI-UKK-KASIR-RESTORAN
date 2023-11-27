@@ -18,8 +18,8 @@ Belum Login!!
 
     public function index()
     {
-        $data['order'] = $this->model_transaksi->order()->result();
-        $data['transaksi'] = $this->model_transaksi->tampil_data()->result();
+        $data['order'] = $this->model_transaksi->order();
+        $data['transaksi'] = $this->model_transaksi->tampil_data();
         $this->load->view('templates/header');
         $this->load->view('templates/sidebar');
         $this->load->view('admin/transaksi', $data);
@@ -30,11 +30,12 @@ Belum Login!!
     {
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $id_order = $this->input->post('id_order');
+            $keterangan = $this->input->post('keterangan');
             $name = $this->input->post('name');
             date_default_timezone_set('Asia/Jakarta');
             $tgl = date("Y-m-d H:i:s");
 
-            $this->model_transaksi->updateKeterangan($id_order);
+            $this->model_transaksi->updateKeterangan($id_order, $keterangan);
             $this->model_transaksi->updateOrder($id_order);
 
             $order_result = $this->db->select('nama_user, no_meja, total_bayar')->get_where('order', array('id_order' => $id_order))->row();
@@ -49,19 +50,17 @@ Belum Login!!
                     'name' => $name,
                     'nomeja' => $noMeja,
                     'tanggal' => $tgl,
-                    'total_bayar' => $totalHarga
+                    'total_bayar' => $totalHarga,
+                    'keterangan' => $keterangan
                 );
 
-                var_dump($id_order); // Debugging, you can remove this line in the final version
+                var_dump($keterangan); 
 
                 if ($this->model_transaksi->insertTransaksi($data)) {
-                    echo "<script>alert('Pesanan berhasil ditambahkan.'); window.location.href = '" . base_url('admin/transaksi') . "';</script>";
+                    redirect('admin/transaksi');
                 } else {
-                    echo "<script>alert('Gagal menambahkan pesanan. Silakan coba lagi.'); window.location.href = '" . base_url('your_controller/your_method') . "';</script>";
+                    echo "<script>alert('Data pesanan tidak ditemukan.'); window.location.href = '" . base_url('admin/transaksi') . "';</script>";
                 }
-            } else {
-                // Handle the case where the query result is null
-                echo "<script>alert('Data pesanan tidak ditemukan.'); window.location.href = '" . base_url('admin/transaksi') . "';</script>";
             }
         }
     }

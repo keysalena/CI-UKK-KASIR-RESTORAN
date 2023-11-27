@@ -1,16 +1,21 @@
 <div id="layoutSidenav_content">
     <main>
         <div class="container-fluid px-4"> <br><br>
-            <button type="button" class="btn btn-dark btn-sm mb-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                Tambah Masakan
-            </button>
-
             <div class="card shadow mb-4" style="background-color: var(--bs-gray-200);">
                 <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-dark">Data masakan</h6>
+                    <div class="row align-items-center">
+                        <div class="col">
+                            <h6 class="m-0 font-weight-bold text-dark">Data Masakan</h6>
+                        </div>
+                        <div class="col-auto">
+                            <button type="button" class="btn btn-dark btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                Tambah Masakan
+                            </button>
+                        </div>
+                    </div>
                 </div>
-                <div class="card-body" >
-                    <div class="table-responsive" >
+                <div class="card-body">
+                    <div class="table-responsive">
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                             <tr>
                                 <th>NO</th>

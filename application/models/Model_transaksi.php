@@ -3,16 +3,22 @@ class Model_transaksi extends CI_Model
 {
     public function tampil_data()
     {
-        return $this->db->get('transaksi');
+        $this->db->where('keterangan', 'selesai');
+    
+        return $this->db->get('transaksi')->result();
     }
     public function order()
     {
-        return $this->db->get('order');
+        $this->db->select('*');
+        $this->db->from('order');
+        $this->db->where('keterangan', 'belum pesan');
+        $query = $this->db->get();
+        return $query->result();
     }
 
-    public function updateKeterangan($id_order)
+    public function updateKeterangan($id_order, $keterangan)
     {
-        $this->db->set('keterangan', 'selesai');
+        $this->db->set('keterangan', $keterangan);
         $this->db->where('id_order', $id_order);
         return $this->db->update('detail');
     }

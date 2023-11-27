@@ -1,59 +1,64 @@
 <br><br><br>
 <div class="container-fluid">
-    <div class="card shadow mb-4" style="background-color: var(--bs-gray-200);">
-        <div class="card-body">
-            <h6 class="m-0 font-weight-bold text-dark mb-3">Detail Pesanan</h6>
-            <div class="table-responsive">
-                <table class="table table-bordered" cellspacing="0">
-                    <tr>
-                        <th>No</th>
-                        <th>Nama Masakan</th>
-                        <th>Jumlah</th>
-                        <th>Harga</th>
-                        <th>Subtotal</th>
-                        <td align="center">UPDATE</td>
-                        <td align="center"></td>
-                    </tr>
-                    <?php
-                    $no = 1;
-                    foreach ($this->cart->contents() as $items) :
-                    ?>
+    <div align="center">
+        <div class="card shadow mb-4 col-md-8" style="background-color: var(--bs-gray-200);">
+            <div class="card-body col-md-12">
+                <h6 class="m-0 font-weight-bold text-dark mb-3">Detail Pesanan</h6>
+                <div class="table-responsive">
+                    <table class="table table-bordered" cellspacing="0">
                         <tr>
-                            <td><?php echo $no++; ?></td>
-                            <td><?php echo $items['name'] ?></td>
-                            <td>
-                                <form action="<?php echo site_url('dashboard/tambah_pembelian/' . $items['id']) ?>" method="post">
-                                    <input style="background-color: var(--bs-gray-200);" class="form-control quantity-input" type="number" name="pembelian" value="<?php echo $items['qty'] ?>" min="1" max="10" data-price="<?php echo $items['price']; ?>">
-                            </td>
-                            <td align="right"><?php echo "Rp " . number_format($items['price'], 0, ",", ".")  ?></td>
-                            <td align="right" class="subtotal"><?php echo "Rp " . number_format($items['subtotal'], 0, ",", ".")  ?></td>
-                            <td align="center"> <button class="btn btn-primary" type="submit"><i class="fas fa-pen-to-square fa-sm"></i></i></a>
-                            <td align="center"><a href="<?php echo base_url('dashboard/hapus_id/') . $items['id']; ?>" class="btn btn-danger btn-sm"><i class="fas fa-trash fa-sm"></i></a></td>
+                            <th>No</th>
+                            <th>Nama Masakan</th>
+                            <th>Jumlah</th>
+                            <th>Harga</th>
+                            <th>Subtotal</th>
+                            <td align="center">UPDATE</td>
+                            <td align="center"></td>
+                        </tr>
+                        <?php
+                        $no = 1;
+                        foreach ($this->cart->contents() as $items) :
+                        ?>
+                            <tr>
+                                <td><?php echo $no++; ?></td>
+                                <td><?php echo $items['name'] ?></td>
+                                <td>
+                                    <form action="<?php echo site_url('dashboard/tambah_pembelian/' . $items['id']) ?>" method="post">
+                                        <input style="background-color: var(--bs-gray-200);" class="form-control quantity-input" type="number" name="pembelian" value="<?php echo $items['qty'] ?>" min="1" max="10" data-price="<?php echo $items['price']; ?>">
+                                </td>
+                                <td align="right"><?php echo "Rp " . number_format($items['price'], 0, ",", ".")  ?></td>
+                                <td align="right" class="subtotal"><?php echo "Rp " . number_format($items['subtotal'], 0, ",", ".")  ?></td>
+                                <td align="center"> <button class="btn btn-primary btn-sm" type="submit"><i class="fas fa-pen fa-sm"></i></i></a>
+                                <td align="center"><a href="<?php echo base_url('dashboard/hapus_id/') . $items['id']; ?>" class="btn btn-danger btn-sm"><i class="fas fa-trash fa-sm"></i></a></td>
                                 </form>
+                                </td>
+                            </tr>
+
+                        <?php endforeach; ?>
+                        <tr class="table-light">
+                            <td class="table-success fw-bold" align="right" colspan="4">Total :</td>
+                            <td class="table-success fw-bold" align="right" id="total" colspan="1">
+                                <?php echo "Rp " . number_format($this->cart->total(), 0, ",", ".") ?>
                             </td>
                         </tr>
-
-                    <?php endforeach; ?>
-                    <tr>
-                        <td class="td-a" align="right" colspan="4">Total :</td>
-                        <td align="right" id="total">
-                            <?php echo "Rp " . number_format($this->cart->total(), 0, ",", ".") ?>
-                        </td>
-                        <td></td>
-                    </tr>
-                </table>
-                <div align="right">
-                    <button class="btn btn-sm btn-danger" type="button" onclick="window.location.href='<?php echo site_url('dashboard/hapus'); ?>'">
-                        <i class="fas fa-trash fa-sm"></i> Hapus
-                    </button>
-                    <button class="btn btn-sm btn-success" type="button" onclick="window.location.href='<?php echo site_url('dashboard/bayar'); ?>'">
-                        <i class="fas fa-money-bill fa-sm"></i> Bayar
-                    </button>
+                    </table>
+                </div>
+                <div class="row">
+                    <div class="col text-start">
+                        <button class="btn btn-sm btn-dark" type="button" onclick="window.location.href='<?php echo site_url('welcome'); ?>'">
+                            <i class="fas fa-backward fa-sm"></i> Kembali
+                        </button>
+                    </div>
+                    <div class="col text-end">
+                        <button class="btn btn-sm btn-danger" type="button" onclick="window.location.href='<?php echo site_url('dashboard/hapus'); ?>'">
+                            <i class="fas fa-trash fa-sm"></i> Hapus
+                        </button>
+                        <button class="btn btn-sm btn-success" type="button" onclick="window.location.href='<?php echo site_url('dashboard/bayar'); ?>'">
+                            <i class="fas fa-money-bill fa-sm"></i> Bayar
+                        </button>
+                    </div>
                 </div>
 
-                <button class="btn btn-sm btn-dark" type="button" onclick="window.location.href='<?php echo site_url('welcome'); ?>'">
-                    <i class="fas fa-backward fa-sm"></i> Kembali
-                </button>
             </div>
         </div>
     </div>

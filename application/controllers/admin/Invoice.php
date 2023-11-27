@@ -18,11 +18,12 @@ Belum Login!!
     }
     public function index()
     {
+        $data['detail'] = $this->model_invoice->tampil_data();
         $data['order'] = $this->model_invoice->tampil_data();
         $this->load->view('templates/header');
         $this->load->view('templates/sidebar');
-        $this->load->view('templates/footer');
         $this->load->view('admin/invoice', $data);
+        $this->load->view('templates/footer');
     }
     public function detail($id_order)
     {
@@ -30,7 +31,8 @@ Belum Login!!
         $data['detail'] = $this->model_invoice->id_detail_order($id_order);
         $this->load->view('templates/header');
         $this->load->view('templates/sidebar');
-        $this->load->view('templates/footer');
         $this->load->view('admin/detail', $data);
+        $this->load->view('templates/footer');
     }
+
 }

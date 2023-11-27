@@ -8,7 +8,14 @@
 <body class="sb-nav-fixed" style="background-color: var(--bs-gray-200);">
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
         <!-- Navbar Brand-->
-        <a class="navbar-brand ps-3" href="index.html">Start Bootstrap</a>
+
+        <div class="navbar-brand ps-3 align-items-center d-flex">
+            <img src="<?php echo base_url() ?>assets/img/hiu.png" alt="Logo" width="50" height="50" class="d-inline-block align-text-top ms-3">
+            <div class="fw-bold mt-2 ms-3">
+                <h3>Admin</h3>
+            </div>
+        </div>
+
         <!-- Sidebar Toggle-->
         <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
         <!-- Navbar Search-->
@@ -30,34 +37,47 @@
     </nav>
     <!-- Divider -->
     <hr class="sidebar-divider my-0">
+    <?php
+    $currentPage = $this->uri->segment(2); // Assuming the controller method is the second URI segment
 
+    function isMenuItemActive($menuItem, $currentPage)
+    {
+        return $menuItem === $currentPage ? 'active' : '';
+    }
+    ?>
     <div id="layoutSidenav">
         <div id="layoutSidenav_nav">
             <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                 <div class="sb-sidenav-menu">
                     <div class="nav">
                         <div class="sb-sidenav-menu-heading">Core</div>
-                        <li class="nav-item active">
-                            <a class="nav-link" href="<?php echo base_url('admin/dashboard_admin') ?>">
+                        <li class="nav-item">
+                            <a class="nav-link <?php echo isMenuItemActive('dashboard_admin', $currentPage); ?>" href="<?php echo base_url('admin/dashboard_admin') ?>">
                                 <i class="fas fa-fw fa-tachometer-alt custom-class"></i>
                                 <span>Dashboard</span>
                             </a>
                         </li>
                         <div class="sb-sidenav-menu-heading">Addons</div>
                         <li class="nav-item ">
-                            <a class="nav-link" href="<?php echo base_url('admin/data_masakan') ?>">
+                            <a class="nav-link  <?php echo isMenuItemActive('data_masakan', $currentPage); ?>" href="<?php echo base_url('admin/data_masakan') ?>">
                                 <i class="fas fa-fw fa-database custom-class"></i>
                                 <span>Data Masakan</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="<?php echo base_url('admin/invoice') ?>">
+                            <a class="nav-link <?php echo isMenuItemActive('detail_order', $currentPage); ?>" href="<?php echo base_url('admin/detail_order') ?>">
+                                <i class="fas fa-fw fa-chart-simple custom-class"></i>
+                                <span>Detail Order</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link <?php echo isMenuItemActive('invoice', $currentPage); ?>" href="<?php echo base_url('admin/invoice') ?>">
                                 <i class="fas fa-fw fa-file-invoice custom-class"></i>
                                 <span>Invoices</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="<?php echo base_url('admin/transaksi') ?>">
+                            <a class="nav-link  <?php echo isMenuItemActive('transaksi', $currentPage); ?>" href="<?php echo base_url('admin/transaksi') ?>">
                                 <i class="fas fa-fw fa-money-bill-transfer custom-class"></i>
                                 <span>Transaksi</span>
                             </a>
@@ -69,6 +89,12 @@
                             <a class="nav-link" href="<?php echo base_url('auth/logout') ?>">
                                 <i class="fas fa-fw fa-rocket custom-class"></i>
                                 <span>Log Out</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="<?php echo base_url('registrasi') ?>">
+                                <i class="fas fa-fw fa-dragon custom-class"></i>
+                                <span>Sign Up</span>
                             </a>
                         </li>
                     </div>

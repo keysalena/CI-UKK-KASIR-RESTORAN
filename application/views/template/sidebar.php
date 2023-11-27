@@ -1,10 +1,14 @@
 <body style="background-color: var(--bs-gray-400);">
     <!-- Navigation-->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container px-4 px-lg-5">
-            <a class="navbar-brand" href="#!">
-                Start Bootstrap
-            </a>
+        <div class="container text px-4 px-lg-5">
+            <div class="navbar-brand ps-3 align-items-center d-flex">
+                <img src="<?php echo base_url() ?>assets/img/hiuu.png" alt="Logo" width="50" height="50" class="d-inline-block align-text-top ms-3" style="filter: brightness(0) invert(1);">
+                <div class="ms-3 align-items-center text-white">
+                    Dashboard
+                </div>
+            </div>
+
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -29,33 +33,28 @@
                         </span>
                     </button>
                 </div>
+                <div class="text-end">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                        <?php if ($this->session->userdata('username')) { ?>
+                            <div class="dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <?php echo $this->session->userdata('username') ?> </a>
+                                <ul class="dropdown-menu" style="background-color: var(--bs-gray-400);">
+                                    <a class="btn dropdown-item" href="<?php echo base_url('auth/logout') ?>">
+                                        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                        Logout
+                                    </a>
+                                </ul>
+                            </div>
+                    </ul>
+                <?php } else { ?>
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                        <a class="nav-link" href="<?php echo base_url('auth/login') ?>">Log In</a>
+                    </ul>
+                <?php } ?>
+
+                </div>
             </div>
         </div>
+        </div>
     </nav>
-    <script>
-    $(document).ready(function() {
-      $('#level').DataTable({
-        "pagingType": "full_numbers",
-        "lengthMenu": [10, 25, 50, 75, 100],
-        "processing": true,
-        "searching": true,
-        "ordering": true,
-        "info": true,
-        "autoWidth": true,
-        "responsive": true,
-        "language": {
-          "search": "_INPUT_",
-          "searchPlaceholder": "Search level",
-        }
-      });
-    });
-  </script>
-  <script>
-    function printTable() {
-      var printContents = document.querySelector("#level").outerHTML;
-      var originalContents = document.body.innerHTML;
-      document.body.innerHTML = printContents;
-      window.print();
-      document.body.innerHTML = originalContents;
-    }
-  </script>
