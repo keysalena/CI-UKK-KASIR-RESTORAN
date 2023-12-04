@@ -1,5 +1,8 @@
 
 <!-- Header-->
+<?php echo $this->session->flashdata('pesan') ?>
+<?php echo $this->session->flashdata('kosong') ?>
+
 <header style="background-color: var(--bs-gray-400); padding: 5rem;">
     <div class="container px-4 px-lg-5 my-5">
         <div class="text-center text-dark">

@@ -3,9 +3,17 @@ class Model_masakan extends CI_Model
 {
     public function tampil_data()
     {
-        return $this->db->get('masakan');
-    }
+        $result = $this->db->select('*')
+        ->from('masakan')
+        ->order_by('masakan.id_masakan', 'DESC')
+        ->get();
 
+    if ($result->num_rows() > 0) {
+        return $result;
+    } else {
+        return false;
+    }
+}
     public function tambah_masakan($data, $table)
     {
         $this->db->insert($table, $data);

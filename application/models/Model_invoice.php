@@ -21,13 +21,11 @@ class Model_invoice extends CI_Model
                 ->get('order');
 
             if ($existingOrderQuery->num_rows() > 0) {
-                $this->session->set_flashdata('penuh', '<div class="alert alert-warning alert-dismissible fade show" role="alert">
-                    <strong>Mohon Maaf!</strong> Maaf, pesanan untuk nomor meja ' . $no_meja . ' belum selesai atau dibatalkan. Silahkan pilih no meja yang tersedia.
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                  </div>');
+                $this->session->set_flashdata('penuh', '<div class="alert alert-warning alert-dismissible fade show" role="alert"> Mohon maaf untuk no meja ' . $no_meja. ' telah dipesan mohon masukkan ulang sesuai table yang tersedia<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>');
                 redirect('dashboard/bayar');
             } else {
-                $this->db->trans_start(); // Start a transaction
+                $this->db->trans_start();
 
                 $order = array(
                     'nama_user' => $nama_user,
@@ -49,6 +47,9 @@ class Model_invoice extends CI_Model
                             'keterangan' => 'diproses'
                         );
                         $this->db->insert('detail', $data);
+                        $this->session->set_flashdata('pesan', '<div class="alert alert-success alert-dismissible fade show" role="alert"> Pesanan Anda Berhasil Diproses !!                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>');
+                        
                     }
                 }
 

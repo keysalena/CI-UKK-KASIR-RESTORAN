@@ -3,9 +3,17 @@ class Model_transaksi extends CI_Model
 {
     public function tampil_data()
     {
-        $this->db->where('keterangan', 'selesai');
-    
-        return $this->db->get('transaksi')->result();
+        $result = $this->db->select('*')
+            ->from('transaksi')
+            ->where('keterangan', 'selesai')
+            ->order_by('transaksi.id_transaksi', 'DESC')
+            ->get();
+
+        if ($result->num_rows() > 0) {
+            return $result->result();
+        } else {
+            return false;
+        }
     }
     public function order()
     {

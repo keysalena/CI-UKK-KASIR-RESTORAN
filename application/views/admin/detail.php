@@ -23,7 +23,7 @@
                                 $total += $subtotal;
                             ?>
                                 <tr>
-                                    <td><?php echo $item->id_detail_order; ?></td>
+                                    <td><?php echo $no++; ?></td>
                                     <td><?php echo $item->nama_masakan; ?></td>
                                     <td><?php echo $item->qty; ?></td>
                                     <td align="right"><?php echo "Rp " . number_format($item->total, 0, ",", "."); ?></td>
@@ -38,7 +38,7 @@
                                 </td>
                             </tr>
                         </table>
-                        <button class="btn btn-sm btn-primary" type="button" onclick="window.location.href='<?php echo site_url('admin/invoice'); ?>'">
+                        <button class="btn btn-sm btn-primary" type="button" onclick="window.location.href='<?php echo site_url('admin/detail_order'); ?>'">
                             <i class="fas fa-backward fa-sm"></i> Kembali
                         </button>
                     </div>

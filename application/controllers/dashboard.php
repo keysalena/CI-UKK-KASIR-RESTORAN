@@ -13,8 +13,6 @@ class Dashboard extends CI_Controller
 Belum Login!!             
             </div>
             ');
-
-            // Redirect to login or another page if the condition is not met
             redirect('auth/login');
         }
     }
@@ -64,19 +62,21 @@ Belum Login!!
         $this->load->view('template/sidebar');
         $this->load->view('template/footer');
         $this->load->view('bayar');
+        
+        $this->session->set_flashdata('kosong', '<div class="alert alert-danger alert-dismissible fade show" role="alert">Maaf keranjang anda kosong. Pilih beberapa menu!!! <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>');
+
     }
     public function proses()
     {
         $is_processed = $this->model_invoice->index();
         if ($is_processed) {
             $this->cart->destroy();
-            $this->load->view('template/header');
-            $this->load->view('template/sidebar');
-            $this->load->view('template/footer');
-            $this->load->view('proses');
+            redirect('dashboard');
         } else {
             echo "Maaf, Pesanan Anda Gagal diproses";
         }
+        
     }
     public function tambah_pembelian($id_masakan)
     {

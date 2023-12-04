@@ -7,12 +7,7 @@ class Data_masakan extends CI_Controller
         parent::__construct();
 
         if ($this->session->userdata('id_level') != 1) {
-            $this->session->set_flashdata('pesan', '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-Belum Login!!           
-            </div>
-            ');
-
-            // Redirect to login or another page if the condition is not met
+            $this->session->set_flashdata('pesan', '<div class="alert alert-danger alert-dismissible fade show" role="alert"> Belum Login!!</div>');
             redirect('auth/login');
         }
     }
